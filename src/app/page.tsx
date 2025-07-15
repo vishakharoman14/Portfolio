@@ -19,9 +19,10 @@ const questionConfig = [
   { key: "Contact", color: "#C19433", icon: UserRoundSearch },
 ] as const;
 
+
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-10 md:pb-20 dark">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden">
         <div
           className="hidden bg-gradient-to-b from-neutral-500/10 to-neutral-500/0 bg-clip-text text-[10rem] leading-none font-black text-transparent select-none sm:block lg:text-[16rem]"
@@ -35,7 +36,13 @@ export default function Home() {
         initial="hidden"
         animate="visible"
       >
-
+          <Image
+        src="/cherry-blossom-svgrepo-com.svg"
+        width={100}
+        height={100}
+        alt="Logo"
+        className="w-6 md:w-8"
+      />
         <h2 className="text-secondary-foreground mt-1 text-xl font-semibold md:text-2xl">
           Hey, I'm Vishakha 🐼
         </h2>
@@ -59,7 +66,7 @@ export default function Home() {
         {questionConfig.map(({ key, color, icon: Icon }) => (
           <Button
             key={key}
-            // onClick={() => goToChat(questions[key])}
+            // onClick={handleTabChange}
             variant="outline"
             className="border-border hover:bg-border/30 aspect-square w-full cursor-pointer rounded-2xl border bg-white/30 py-8 shadow-none backdrop-blur-lg active:scale-95 md:p-10"
           >
