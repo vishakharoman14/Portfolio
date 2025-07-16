@@ -10,6 +10,10 @@ import {
   PartyPopper,
   UserRoundSearch,
 } from "lucide-react";
+import Aboutme from "@/components/Modules/Aboutme";
+import ProjectsTab from "@/components/Modules/ProjectsTab";
+import SkillsTab from "@/components/Modules/SkillsTab";
+import ContactTab from "@/components/Modules/ContactTab";
 
 const questionConfig = [
   { key: "Me", color: "#329696", icon: Laugh },
@@ -77,7 +81,13 @@ export default function Home() {
           </Button>
         ))}
       </div>
+     
       <FluidCursor />
+       <Aboutme/>
+      <ProjectsTab/>
+      <SkillsTab/>
+      <ContactTab/>
     </div>
+    
   );
 }
