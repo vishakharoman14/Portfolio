@@ -143,8 +143,7 @@ export default function AboutMePage() {
               />
               <h3 className="text-lg font-medium">Pixel Craft</h3>
               <p className="text-gray-600 dark:text-gray-400">
-                From Figma mock‑ups to live CSS — getting the details just
-                right is my happy place.
+                Turning ideas into interactive, scalable websites is what I do best
               </p>
             </article>
 
