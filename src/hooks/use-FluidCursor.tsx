@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+
 const useFluidCursor = () => {
   const canvas = document.getElementById('fluid');
   resizeCanvas();
@@ -275,46 +277,6 @@ const useFluidCursor = () => {
    `
   );
 
-  const blurVertexShader = compileShader(
-    gl.VERTEX_SHADER,
-    `
-       precision highp float;
-   
-       attribute vec2 aPosition;
-       varying vec2 vUv;
-       varying vec2 vL;
-       varying vec2 vR;
-       uniform vec2 texelSize;
-   
-       void main () {
-           vUv = aPosition * 0.5 + 0.5;
-           float offset = 1.33333333;
-           vL = vUv - texelSize * offset;
-           vR = vUv + texelSize * offset;
-           gl_Position = vec4(aPosition, 0.0, 1.0);
-       }
-   `
-  );
-
-  const blurShader = compileShader(
-    gl.FRAGMENT_SHADER,
-    `
-       precision mediump float;
-       precision mediump sampler2D;
-   
-       varying vec2 vUv;
-       varying vec2 vL;
-       varying vec2 vR;
-       uniform sampler2D uTexture;
-   
-       void main () {
-           vec4 sum = texture2D(uTexture, vUv) * 0.29411764;
-           sum += texture2D(uTexture, vL) * 0.35294117;
-           sum += texture2D(uTexture, vR) * 0.35294117;
-           gl_FragColor = sum;
-       }
-   `
-  );
 
   const copyShader = compileShader(
     gl.FRAGMENT_SHADER,
@@ -343,19 +305,6 @@ const useFluidCursor = () => {
    
        void main () {
            gl_FragColor = value * texture2D(uTexture, vUv);
-       }
-   `
-  );
-
-  const colorShader = compileShader(
-    gl.FRAGMENT_SHADER,
-    `
-       precision mediump float;
-   
-       uniform vec4 color;
-   
-       void main () {
-           gl_FragColor = color;
        }
    `
   );
@@ -849,48 +798,6 @@ const useFluidCursor = () => {
     return target;
   }
 
-  function createTextureAsync(url) {
-    const texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
-    gl.texImage2D(
-      gl.TEXTURE_2D,
-      0,
-      gl.RGB,
-      1,
-      1,
-      0,
-      gl.RGB,
-      gl.UNSIGNED_BYTE,
-      new Uint8Array([255, 255, 255])
-    );
-
-    const obj = {
-      texture,
-      width: 1,
-      height: 1,
-      attach(id) {
-        gl.activeTexture(gl.TEXTURE0 + id);
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        return id;
-      },
-    };
-
-    const image = new Image();
-    image.onload = () => {
-      obj.width = image.width;
-      obj.height = image.height;
-      gl.bindTexture(gl.TEXTURE_2D, texture);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
-    };
-    image.src = url;
-
-    return obj;
-  }
-
   function updateKeywords() {
     const displayKeywords = [];
     if (config.SHADING) displayKeywords.push('SHADING');
@@ -1257,15 +1164,15 @@ const useFluidCursor = () => {
     c.b *= 0.15;
     return c;
   }
-
+ 
   function HSVtoRGB(h, s, v) {
-    let r, g, b, i, f, p, q, t;
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+   const i = Math.floor(h * 6);
+   const f = h * 6 - i;
+  const  p = v * (1 - s);
+    const q = v * (1 - f * s);
+  const  t = v * (1 - (1 - f) * s);
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
     switch (i % 6) {
       case 0:
         (r = v), (g = t), (b = p);
