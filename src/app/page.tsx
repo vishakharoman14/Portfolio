@@ -48,7 +48,7 @@ export default function Home() {
         className="w-6 md:w-8"
       />
         <h2 className="text-secondary-foreground mt-1 text-xl font-semibold md:text-2xl">
-          Hey, I'm Vishakha 🐼
+          Hey, {"I'm"} Vishakha 🐼
         </h2>
         <h4 className="text-lg sm:text-xl md:text-1xl lg:text-1xl">
           Frontend Developer specializing in the MERN stack.
